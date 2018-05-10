@@ -91,6 +91,7 @@ public class Maze {
 			
 			int incorrectTiles = 0;
 			
+			//Create a list of the surrounding tiles
 			ArrayList<Tile> surroundingTiles = new ArrayList<Tile>();
 			if(x != 0) {
 				surroundingTiles.add(grid[x - 1][y]);
@@ -105,6 +106,7 @@ public class Maze {
 				surroundingTiles.add(grid[x][y - 1]);
 			}
 			
+			//Check each tile
 			for(Tile tile: surroundingTiles) {
 				if(tile.notVisited()) {
 					tile.visit();
@@ -116,6 +118,8 @@ public class Maze {
 				}
 			}
 			
+			//If all paths but the one we arrived from are incorrect mark
+			// this tile as incorrect also
 			if(incorrectTiles == surroundingTiles.size() - 1) {
 				grid[x][y].setCorrect(false);
 			}
